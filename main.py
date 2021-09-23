@@ -1,11 +1,11 @@
-from Transaction import Transaction
 import csv
-from Transaction import Transaction
+from transaction import Transaction
+import calculate_transactions
 
 CSV_FILE_NAME = 'SIMPLII.csv'
 
 def main():
-    transactions = read_csv()
+    transactions = read_csv(CSV_FILE_NAME)
 
     total_expense = get_total_expense(transactions)
     total_deposit = get_total_deposit(transactions)
@@ -13,11 +13,11 @@ def main():
 
     print("You have a net deposit of {0}".format(net_deposit))
 
-def read_csv():
+def read_csv(file_name):
 
     transactions = []
 
-    with open(CSV_FILE_NAME) as f:
+    with open(file_name) as f:
         lines = csv.DictReader(f, delimiter= ',')
 
         for line in lines:
