@@ -10,8 +10,7 @@ class Transaction:
         
         return '{date}, {details}, {expense}, {deposit}'.format(
             date = self.date, 
-            details = 
-            self.details, 
+            details = self.details, 
             expense = self.expense, 
             deposit = self.deposit
         )
