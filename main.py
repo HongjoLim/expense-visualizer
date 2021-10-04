@@ -1,19 +1,26 @@
-from Transaction import Transaction
 import csv
-from Transaction import Transaction
+from transaction import Transaction
+import calculate_transactions
 
-CSV_FILE_NAME = 'SIMPLII.csv'
+CSV_FILE_NAME_DEBIT = 'SIMPLII-debit.csv'
+CSV_FILE_NAME_CREDIT = 'SIMPLII-credit.csv'
 
 def main():
-    transactions = read_csv()
+    transactions = []
 
-    total_expense = get_total_expense(transactions)
-    total_deposit = get_total_deposit(transactions)
+    debit_transactions = read_csv(CSV_FILE_NAME_DEBIT)
+    credit_transactions = read_csv(CSV_FILE_NAME_CREDIT)
+
+    transactions.append(debit_transactions)
+    transactions.append(credit_transactions)
+
+    total_expense = calculate_transactions.get_total_expense(transactions)
+    total_deposit = calculate_transactions.get_total_deposit(transactions)
     net_deposit = total_deposit - total_expense
 
     print("You have a net deposit of {0}".format(net_deposit))
 
-def read_csv():
+def read_csv(CSV_FILE_NAME):
 
     transactions = []
 
@@ -34,24 +41,6 @@ def to_num(str_amount):
         return float(str_amount)
     except:
         return 0
-
-def get_total_deposit(transactions):
-
-    total_deposit = 0
-
-    for transaction in transactions:
-        total_deposit += transaction.deposit
-
-    return total_deposit
-
-def get_total_expense(transactions):
-
-    total_expense = 0
-
-    for transaction in transactions:
-        total_expense += transaction.expense
-
-    return total_expense
 
 if __name__ == '__main__':
     main()
