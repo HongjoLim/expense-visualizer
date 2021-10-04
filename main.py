@@ -11,14 +11,14 @@ def main():
     debit_transactions = read_csv(CSV_FILE_NAME_DEBIT)
     credit_transactions = read_csv(CSV_FILE_NAME_CREDIT)
 
-    transactions.append(debit_transactions)
-    transactions.append(credit_transactions)
+    total_expense_debit = calculate_transactions.get_total_expense(debit_transactions)
+    total_expense_credit = calculate_transactions.get_total_expense(credit_transactions)
 
-    total_expense = calculate_transactions.get_total_expense(transactions)
-    total_deposit = calculate_transactions.get_total_deposit(transactions)
-    net_deposit = total_deposit - total_expense
+    total_deposit = calculate_transactions.get_total_deposit(debit_transactions)
+    net_deposit = total_deposit - total_expense_debit - total_expense_credit
 
     print("You have a net deposit of {0}".format(net_deposit))
+    print("Your total expense on the credit card is {0}".format(total_expense_credit))
 
 def read_csv(CSV_FILE_NAME):
 
