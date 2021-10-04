@@ -6,8 +6,7 @@ CSV_FILE_NAME_DEBIT = 'SIMPLII-debit.csv'
 CSV_FILE_NAME_CREDIT = 'SIMPLII-credit.csv'
 
 def main():
-    transactions = []
-
+    
     debit_transactions = read_csv(CSV_FILE_NAME_DEBIT)
     credit_transactions = read_csv(CSV_FILE_NAME_CREDIT)
 
@@ -20,11 +19,11 @@ def main():
     print("You have a net deposit of {0}".format(net_deposit))
     print("Your total expense on the credit card is {0}".format(total_expense_credit))
 
-def read_csv(CSV_FILE_NAME):
+def read_csv(file_name):
 
     transactions = []
 
-    with open(CSV_FILE_NAME) as f:
+    with open(file_name) as f:
         lines = csv.DictReader(f, delimiter= ',')
 
         for line in lines:
