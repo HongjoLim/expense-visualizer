@@ -8,7 +8,7 @@ def main():
     lines = strip_non_numeric_chars(lines)
     lines = convert_to_abs(lines)
     total_expenditure = add_all_entries(lines)
-    print(total_expenditure)
+    print('{:.2f}'.format(total_expenditure))
 
 def read_file(file_name):
     with open(file_name) as f:
